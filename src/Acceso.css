@@ -1,0 +1,176 @@
+
+.acceso {
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  background: #171717;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 35px 20px;
+  box-sizing: border-box;
+}
+
+.acceso-caja {
+  width: 100%;
+  max-width: 430px;
+  margin: auto;
+  text-align: center;
+}
+
+.logo-imagen {
+  width: 105px;
+  height: 105px;
+  object-fit: contain;
+  border-radius: 50%;
+  margin-bottom: 25px;
+}
+
+.acceso-caja h2 {
+  color: #ffffff;
+  font-size: 24px;
+  margin-bottom: 18px;
+}
+
+.texto-acceso {
+  color: #ffffff;
+  font-size: 15px;
+  margin-bottom: 25px;
+}
+
+.pestanas-acceso {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.pestanas-acceso button {
+  background: #292929;
+  color: #aaaaaa;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.pestanas-acceso button.activa {
+  background: #eab308;
+  color: #111111;
+}
+
+.acceso-caja form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.campo-acceso,
+.campos-dobles label {
+  display: flex;
+  align-items: center;
+  background: #292929;
+  border: 1px solid #444444;
+  border-radius: 7px;
+  padding: 0 13px;
+  height: 52px;
+}
+
+.campo-acceso span,
+.campos-dobles span {
+  color: #ffffff;
+  font-size: 15px;
+  margin-right: 12px;
+}
+
+.campo-acceso input,
+.campos-dobles input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.campo-acceso input::placeholder,
+.campos-dobles input::placeholder {
+  color: #cccccc;
+}
+
+.campos-dobles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.campos-dobles label {
+  min-width: 0;
+  padding: 0 9px;
+}
+
+.campos-dobles span {
+  margin-right: 6px;
+  font-size: 12px;
+}
+
+.campos-dobles input {
+  min-width: 0;
+  font-size: 12px;
+}
+
+.boton-acceso {
+  display: block;
+  width: fit-content;
+  min-width: 150px;
+  margin: 8px auto 0;
+  padding: 13px 22px;
+  border: none;
+  border-radius: 7px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.volver-acceso {
+  margin-top: 22px;
+  background: transparent;
+  border: none;
+  color: #cccccc;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.volver-acceso:hover {
+  color: #eab308;
+}
+
+@media (max-width: 480px) {
+  .acceso {
+    padding: 30px 20px;
+    align-items: center;
+  }
+
+  .acceso-caja {
+    max-width: 100%;
+  }
+
+  .logo-imagen {
+    width: 90px;
+    height: 90px;
+  }
+
+  .acceso-caja h2 {
+    font-size: 21px;
+  }
+
+  .campos-dobles {
+    gap: 8px;
+  }
+}
+
+@media (max-height: 600px) {
+  .acceso {
+    align-items: flex-start;
+  }
+}
