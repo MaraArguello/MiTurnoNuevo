@@ -10,6 +10,7 @@ function App() {
   const [fechaSeleccionada, setFechaSeleccionada] = useState("");
   const [cargando, setCargando] = useState(false);
   const [horarioSeleccionado, setHorarioSeleccionado] = useState("");
+  const [usuarioActual, setUsuarioActual] = useState(null);
 
   const horarios = [
     "10:00", "11:00", "12:00", "13:00", "14:00",
@@ -40,7 +41,8 @@ function App() {
     setPantalla("acceso");
   }
 
-  function entrar() {
+  function entrar(usuario) {
+    setUsuarioActual(usuario);
     setPantalla("reserva");
   }
 
@@ -67,10 +69,18 @@ function App() {
       return;
     }
 
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("Tu sesión venció. Iniciá sesión nuevamente.");
+      setUsuarioActual(null);
+      setPantalla("acceso");
+      return;
+    }
+
     const datos = new FormData(e.currentTarget);
 
     const nuevoTurno = {
-      nombre: datos.get("nombre"),
       servicio: datos.get("servicio"),
       fecha: datos.get("fecha"),
       horario: horarioSeleccionado,
@@ -83,6 +93,7 @@ function App() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(nuevoTurno),
       });
@@ -90,21 +101,34 @@ function App() {
       const resultado = await respuesta.json();
 
       if (!respuesta.ok) {
+        if (respuesta.status === 401) {
+          localStorage.removeItem("token");
+          setUsuarioActual(null);
+          setPantalla("acceso");
+          alert("Tu sesión venció. Iniciá sesión nuevamente.");
+          return;
+        }
+
         alert(resultado.error || "No se pudo guardar el turno.");
         return;
       }
 
+      const turnoGuardado = {
+        ...nuevoTurno,
+        nombre: resultado.nombre,
+        id: resultado.id,
+      };
+
       setTurnosOcupados((anteriores) => [
         ...anteriores,
-        {
-          ...nuevoTurno,
-          id: resultado.id,
-        },
+        turnoGuardado,
       ]);
 
-      setTurnoConfirmado(nuevoTurno);
+      setTurnoConfirmado(turnoGuardado);
+
     } catch (error) {
       console.error("Error al guardar el turno:", error);
+
       alert(
         "No se pudo conectar con el servidor. Revisá que el backend esté funcionando."
       );
@@ -126,13 +150,13 @@ function App() {
     return (
       <div className="pagina">
         <div className="logo-reserva">
-         <img
-    src="/img/logo.png"
-    alt="MiTurno"
-    className="logo-imagen"
-  />
-</div>
-        
+          <img
+            src="/img/logo.png"
+            alt="MiTurno"
+            className="logo-imagen"
+          />
+        </div>
+
         <main className="contenido">
           {turnoConfirmado ? (
             <section className="confirmacion">
@@ -160,8 +184,12 @@ function App() {
                 <span>👤</span>
                 <input
                   name="nombre"
-                  placeholder="Usuario o email"
-                  required
+                  value={
+                    usuarioActual
+                      ? `${usuarioActual.nombre} ${usuarioActual.apellido}`
+                      : ""
+                  }
+                  readOnly
                 />
               </label>
 
@@ -236,13 +264,14 @@ function App() {
               >
                 Mis Puntos
               </button>
-               <button
-    className="volver-inicio-reserva"
-    type="button"
-    onClick={() => setPantalla("inicio")}
-  >
-    Volver al inicio
-  </button>
+
+              <button
+                className="volver-inicio-reserva"
+                type="button"
+                onClick={() => setPantalla("inicio")}
+              >
+                Volver al inicio
+              </button>
             </form>
           )}
         </main>
@@ -331,7 +360,18 @@ function App() {
         <section id="ubicacion">
           <h2>Ubicación y contacto</h2>
           <p>Benito Juárez, Buenos Aires</p>
-          <p>Lunes a sábado, de 10:00 a 20:00</p>
+          <p>Lunes a Domingo, de 10:00 a 20:00</p>
+          <div className="mapa">
+            <iframe
+              title="Mapa de Benito Juárez"
+              src="https://www.google.com/maps?q=Benito%20Juarez%20Buenos%20Aires&output=embed"
+              width="100%"
+              height="300"
+              style={{ border: 0 }}
+              loading="lazy"
+              allowFullScreen
+            />
+          </div>
         </section>
       </main>
     </div>

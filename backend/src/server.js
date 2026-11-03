@@ -1,4 +1,3 @@
-
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
@@ -15,6 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/turnos", require("./routes/turnos"));
+app.use("/api/auth", require("./routes/auth"));
 
 app.listen(PORT, () => {
   console.log(`Servidor de MiTurno iniciado en http://localhost:${PORT}`);
