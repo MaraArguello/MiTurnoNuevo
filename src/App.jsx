@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import Acceso from "./Acceso.jsx";
+import DuenoLogin from "./DuenoLogin.jsx";
+import PanelDueno from "./PanelDueno.jsx";
 
 function App() {
   const [pantalla, setPantalla] = useState("inicio");
@@ -136,6 +138,26 @@ function App() {
       setCargando(false);
     }
   }
+
+  if (pantalla === "dueno")
+    {
+  return (
+    <DuenoLogin
+      alVolver={() => setPantalla("inicio")}
+      alIngresar={() => setPantalla("panel-dueno")}
+    />
+    
+  );
+  
+  }
+  if (pantalla === "panel-dueno") {
+  return (
+    <PanelDueno
+      alCerrarSesion={volverAlInicio}
+    />
+  );
+
+}
 
   if (pantalla === "acceso") {
     return (
@@ -291,8 +313,11 @@ function App() {
           <a href="#servicios">Servicios</a>
           <a href="#ubicacion">Ubicación</a>
 
-          <button className="boton boton-dueno">
-            Dueño
+          <button
+            className="boton boton-dueno"
+            onClick={() => setPantalla("dueno")}
+          >
+          Dueño
           </button>
 
           <button className="boton" onClick={abrirReserva}>

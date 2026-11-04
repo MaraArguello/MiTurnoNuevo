@@ -1,0 +1,146 @@
+
+.dueno-login {
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  background: #171717;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 35px 20px;
+  box-sizing: border-box;
+}
+
+.dueno-caja {
+  width: 100%;
+  max-width: 430px;
+  margin: auto;
+  padding: 35px 25px;
+  text-align: center;
+  box-sizing: border-box;
+
+  /* Borde exclusivo del dueño */
+  border: 2px solid #d6b84b;
+  border-radius: 14px;
+  box-shadow: 0 0 15px rgba(214, 184, 75, 0.12);
+}
+
+.dueno-logo {
+  width: 105px;
+  height: 105px;
+  object-fit: contain;
+  border-radius: 50%;
+  margin-bottom: 25px;
+}
+
+.dueno-caja h2 {
+  color: #ffffff;
+  font-size: 24px;
+  margin-bottom: 18px;
+}
+
+.dueno-subtitulo {
+  color: #d6b84b;
+  font-size: 15px;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.dueno-caja form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dueno-campo {
+  display: flex;
+  align-items: center;
+  background: #292929;
+  border: 1px solid #444444;
+  border-radius: 7px;
+  padding: 0 13px;
+  height: 52px;
+  box-sizing: border-box;
+}
+
+.dueno-campo span {
+  color: #ffffff;
+  font-size: 15px;
+  margin-right: 12px;
+}
+
+.dueno-campo input {
+  width: 100%;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.dueno-campo input::placeholder {
+  color: #cccccc;
+}
+
+.dueno-boton {
+  display: block;
+  width: fit-content;
+  min-width: 150px;
+  margin: 8px auto 0;
+  padding: 13px 22px;
+  background: #d6b84b;
+  color: #111111;
+  border: none;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.dueno-boton:hover {
+  background: #f0d36a;
+  transform: translateY(-2px);
+}
+
+.dueno-volver {
+  margin-top: 22px;
+  background: transparent;
+  border: none;
+  color: #cccccc;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.dueno-volver:hover {
+  color: #eab308;
+}
+
+/* CELULARES */
+
+@media (max-width: 480px) {
+  .dueno-login {
+    padding: 30px 20px;
+  }
+
+  .dueno-caja {
+    max-width: 100%;
+    padding: 30px 18px;
+  }
+
+  .dueno-logo {
+    width: 90px;
+    height: 90px;
+  }
+
+  .dueno-caja h2 {
+    font-size: 21px;
+  }
+}
+
+@media (max-height: 600px) {
+  .dueno-login {
+    align-items: flex-start;
+  }
+}
