@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Acceso from "./Acceso.jsx";
 import DuenoLogin from "./DuenoLogin.jsx";
-import PanelDueno from "./PanelDueno.jsx";
+import PanelDueno from "./PanelDueno.jsx"
+import Footer from "./footer.jsx";
 
 function App() {
   const [pantalla, setPantalla] = useState("inicio");
@@ -301,6 +302,7 @@ function App() {
     );
   }
 
+  
   return (
     <div className="pagina">
       <header className="barra">
@@ -317,7 +319,7 @@ function App() {
             className="boton boton-dueno"
             onClick={() => setPantalla("dueno")}
           >
-          Dueño
+            Dueño
           </button>
 
           <button className="boton" onClick={abrirReserva}>
@@ -329,7 +331,6 @@ function App() {
       <section className="portada">
         <div className="portada-texto">
           <h1>BELLUX BARBER</h1>
-
           <h2>Estilo y precisión en cada corte</h2>
 
           <p className="descripcion">
@@ -384,21 +385,57 @@ function App() {
 
         <section id="ubicacion">
           <h2>Ubicación y contacto</h2>
-          <p>Benito Juárez, Buenos Aires</p>
-          <p>Lunes a Domingo, de 10:00 a 20:00</p>
-          <div className="mapa">
-            <iframe
-              title="Mapa de Benito Juárez"
-              src="https://www.google.com/maps?q=Benito%20Juarez%20Buenos%20Aires&output=embed"
-              width="100%"
-              height="300"
-              style={{ border: 0 }}
-              loading="lazy"
-              allowFullScreen
-            />
+          <p className="texto-ubicacion">
+            Encontranos en Benito Juárez y vení a conocer nuestro local.
+          </p>
+
+          <div className="contenedor-ubicacion">
+            <div className="datos-ubicacion">
+
+              <article className="tarjeta-ubicacion">
+                <span className="icono-ubicacion">⌖</span>
+                <div>
+                  <h3>Ubicación</h3>
+                  <p>Benito Juárez, Buenos Aires</p>
+                </div>
+              </article>
+
+              <article className="tarjeta-ubicacion">
+                <span className="icono-ubicacion">◷</span>
+                <div>
+                  <h3>Horarios de atención</h3>
+                  <p>Lunes a domingo</p>
+                  <p>De 10:00 a 20:00 hs.</p>
+                </div>
+              </article>
+
+              <article className="tarjeta-ubicacion">
+                <span className="icono-ubicacion">✉</span>
+                <div>
+                  <h3>Contacto</h3>
+                  <p>Consultá por turnos y disponibilidad.</p>
+                </div>
+              </article>
+
+            </div>
+
+            <div className="mapa">
+              <iframe
+                title="Ubicación de Bellux Barber"
+                src="https://www.google.com/maps?q=Benito%20Juarez%20Buenos%20Aires&output=embed"
+                width="100%"
+                height="350"
+                style={{ border: 0 }}
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
           </div>
         </section>
       </main>
+
+      <Footer />
     </div>
   );
 }
