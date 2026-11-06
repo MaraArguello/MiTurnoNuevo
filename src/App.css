@@ -348,7 +348,76 @@ nav a:hover {
   margin-top: -5px;
 }
 
-/* RESPONSIVE */
+
+/* UBICACIÓN */
+
+.texto-ubicacion {
+  margin-bottom: 25px;
+}
+
+.contenedor-ubicacion {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 22px;
+  margin-top: 25px;
+}
+
+.datos-ubicacion {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.tarjeta-ubicacion {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: #1c1c1c;
+  border: 1px solid #333333;
+  border-radius: 10px;
+  transition: border-color 0.2s;
+}
+
+.tarjeta-ubicacion:hover {
+  border-color: #d6b84b;
+}
+
+.icono-ubicacion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #d6b84b;
+  border-radius: 50%;
+  color: #d6b84b;
+  font-size: 22px;
+}
+
+.tarjeta-ubicacion h3 {
+  color: #d6b84b;
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.tarjeta-ubicacion p {
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+
+.mapa {
+  overflow: hidden;
+  border: 1px solid #333333;
+  border-radius: 10px;
+  min-height: 300px;
+}
+
+.mapa iframe {
+  display: block;
+}
+
 
 @media (max-width: 750px) {
   .barra {
@@ -379,6 +448,14 @@ nav a:hover {
 
   .contenido {
     padding: 20px 6% 40px;
+  }
+
+  .contenedor-ubicacion {
+    grid-template-columns: 1fr;
+  }
+
+  .mapa iframe {
+    height: 300px;
   }
 }
 
